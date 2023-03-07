@@ -1,0 +1,68 @@
+
+import numpy as np
+import matplotlib.pyplot as plt
+import warnings
+
+
+def plot_venn_diagram():
+    fig, ax = plt.subplots(subplot_kw=dict(frameon=False, xticks=[], yticks=[]))
+    ax.add_patch(plt.Circle((0.3, 0.3), 0.3, fc='red', alpha=0.5))
+    ax.add_patch(plt.Circle((0.6, 0.3), 0.3, fc='blue', alpha=0.5))
+    ax.add_patch(plt.Rectangle((-0.1, -0.1), 1.1, 0.8, fc='none', ec='black'))
+    ax.text(0.2, 0.3, '$x$', size=30, ha='center', va='center')
+    ax.text(0.7, 0.3, '$y$', size=30, ha='center', va='center')
+    ax.text(0.0, 0.6, '$I$', size=30)
+    ax.axis('equal')
+
+
+def plot_example_decision_tree():
+    fig = plt.figure(figsize=(10, 4))
+    ax = fig.add_axes([0, 0, 0.8, 1], frameon=False, xticks=[], yticks=[])
+    ax.set_title('Example Decision Tree: Animal Classification', size=24)
+
+    def text(ax, x, y, t, size=20, **kwargs):
+        ax.text(x, y, t,
+                ha='center', va='center', size=size,
+                bbox=dict(boxstyle='round', ec='k', fc='w'), **kwargs)
+
+    text(ax, 0.5, 0.9, "How big is\nthe animal?", 20)
+    text(ax, 0.3, 0.6, "Does the animal\nhave horns?", 18)
+    text(ax, 0.7, 0.6, "Does the animal\nhave two legs?", 18)
+    text(ax, 0.12, 0.3, "Are the horns\nlonger than 10cm?", 14)
+    text(ax, 0.38, 0.3, "Is the animal\nwearing a collar?", 14)
+    text(ax, 0.62, 0.3, "Does the animal\nhave wings?", 14)
+    text(ax, 0.88, 0.3, "Does the animal\nhave a tail?", 14)
+
+    text(ax, 0.4, 0.75, "> 1m", 12, alpha=0.4)
+    text(ax, 0.6, 0.75, "< 1m", 12, alpha=0.4)
+
+    text(ax, 0.21, 0.45, "yes", 12, alpha=0.4)
+    text(ax, 0.34, 0.45, "no", 12, alpha=0.4)
+
+    text(ax, 0.66, 0.45, "yes", 12, alpha=0.4)
+    text(ax, 0.79, 0.45, "no", 12, alpha=0.4)
+
+    ax.plot([0.3, 0.5, 0.7], [0.6, 0.9, 0.6], '-k')
+    ax.plot([0.12, 0.3, 0.38], [0.3, 0.6, 0.3], '-k')
+    ax.plot([0.62, 0.7, 0.88], [0.3, 0.6, 0.3], '-k')
+    ax.plot([0.0, 0.12, 0.20], [0.0, 0.3, 0.0], '--k')
+    ax.plot([0.28, 0.38, 0.48], [0.0, 0.3, 0.0], '--k')
+    ax.plot([0.52, 0.62, 0.72], [0.0, 0.3, 0.0], '--k')
+    ax.plot([0.8, 0.88, 1.0], [0.0, 0.3, 0.0], '--k')
+    ax.axis([0, 1, 0, 1])
+
+
+def visualize_tree(estimator, X, y, boundaries=True,
+                   xlim=None, ylim=None):
+    estimator.fit(X, y)
+
+    if xlim is None:
+        xlim = (X[:, 0].min() - 0.1, X[:, 0].max() + 0.1)
+    if ylim is None:
+        ylim = (X[:, 1].min() - 0.1, X[:, 1].max() + 0.1)
+
+    x_min, x_max = xlim
+    y_min, y_max = ylim
+    xx, yy = np.meshgrid(np.linspace(x_min, x_max, 100),
+                         np.linspace(y_min, y_max, 100))
+    Z = estimator.predict(np.c_[xx.ravel(), yy.ravel()])
