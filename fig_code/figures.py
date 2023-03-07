@@ -66,3 +66,96 @@ def visualize_tree(estimator, X, y, boundaries=True,
     xx, yy = np.meshgrid(np.linspace(x_min, x_max, 100),
                          np.linspace(y_min, y_max, 100))
     Z = estimator.predict(np.c_[xx.ravel(), yy.ravel()])
+
+    # Put the result into a color plot
+    Z = Z.reshape(xx.shape)
+    plt.figure()
+    plt.pcolormesh(xx, yy, Z, alpha=0.2, cmap='rainbow')
+    plt.clim(y.min(), y.max())
+
+    # Plot also the training points
+    plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='rainbow')
+    plt.axis('off')
+
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)        
+    plt.clim(y.min(), y.max())
+    
+    # Plot the decision boundaries
+    def plot_boundaries(i, xlim, ylim):
+        if i < 0:
+            return
+
+        tree = estimator.tree_
+        
+        if tree.feature[i] == 0:
+            plt.plot([tree.threshold[i], tree.threshold[i]], ylim, '-k')
+            plot_boundaries(tree.children_left[i],
+                            [xlim[0], tree.threshold[i]], ylim)
+            plot_boundaries(tree.children_right[i],
+                            [tree.threshold[i], xlim[1]], ylim)
+        
+        elif tree.feature[i] == 1:
+            plt.plot(xlim, [tree.threshold[i], tree.threshold[i]], '-k')
+            plot_boundaries(tree.children_left[i], xlim,
+                            [ylim[0], tree.threshold[i]])
+            plot_boundaries(tree.children_right[i], xlim,
+                            [tree.threshold[i], ylim[1]])
+            
+    if boundaries:
+        plot_boundaries(0, plt.xlim(), plt.ylim())
+
+
+def plot_tree_interactive(X, y):
+    from sklearn.tree import DecisionTreeClassifier
+
+    def interactive_tree(depth=1):
+        clf = DecisionTreeClassifier(max_depth=depth, random_state=0)
+        visualize_tree(clf, X, y)
+
+    from IPython.html.widgets import interact
+    return interact(interactive_tree, depth=[1, 5])
+
+
+def plot_kmeans_interactive(min_clusters=1, max_clusters=6):
+    from IPython.html.widgets import interact
+    from sklearn.metrics.pairwise import euclidean_distances
+    from sklearn.datasets.samples_generator import make_blobs
+    
+    X, y = make_blobs(n_samples=300, centers=4,
+                      random_state=0, cluster_std=0.60)
+
+    def _kmeans_step(frame=0, n_clusters=4):
+        rng = np.random.RandomState(2)
+        labels = np.zeros(X.shape[0])
+        centers = rng.randn(n_clusters, 2)
+
+        nsteps = frame // 3
+
+        for i in range(nsteps + 1):
+            old_centers = centers
+            if i < nsteps or frame % 3 > 0:
+                dist = euclidean_distances(X, centers)
+                labels = dist.argmin(1)
+
+            if i < nsteps or frame % 3 > 1:
+                with warnings.catch_warnings():
+                    warnings.filterwarnings('ignore',
+                                            message='Mean of empty slice')
+                    centers = np.array([X[labels == j].mean(0)
+                                        for j in range(n_clusters)])
+                nans = np.isnan(centers)
+                centers[nans] = old_centers[nans]
+
+
+        # plot the data and cluster centers
+        plt.scatter(X[:, 0], X[:, 1], c=labels, s=50, cmap='rainbow',
+                    vmin=0, vmax=n_clusters - 1);
+        plt.scatter(old_centers[:, 0], old_centers[:, 1], marker='o',
+                    c=np.arange(n_clusters),
+                    s=200, cmap='rainbow')
+        plt.scatter(old_centers[:, 0], old_centers[:, 1], marker='o',
+                    c='black', s=50)
+
+        # plot new centers if third frame
+        if frame % 3 == 2:
