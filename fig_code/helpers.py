@@ -9,4 +9,7 @@ from matplotlib.colors import ListedColormap
 
 # Create color maps for 3-class classification problem, as with iris
 cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF'])
-cmap_bold = ListedColormap(['#FF00
+cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF'])
+
+def plot_iris_knn():
+    iris = datasets
