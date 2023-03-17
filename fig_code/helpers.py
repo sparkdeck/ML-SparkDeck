@@ -12,4 +12,5 @@ cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF'])
 cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF'])
 
 def plot_iris_knn():
-    iris = datasets
+    iris = datasets.load_iris()
+    X = iris.data[:, :2]  # we only take the first two features. We cou
