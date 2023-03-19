@@ -20,4 +20,5 @@ def plot_iris_knn():
     knn = neighbors.KNeighborsClassifier(n_neighbors=3)
     knn.fit(X, y)
 
-   
+    x_min, x_max = X[:, 0].min() - .1, X[:, 0].max() + .1
+    y_min, y_max = X[:, 1].min() - .1, X[:, 1].m
