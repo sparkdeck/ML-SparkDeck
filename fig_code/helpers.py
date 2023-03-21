@@ -26,4 +26,7 @@ def plot_iris_knn():
                          np.linspace(y_min, y_max, 100))
     Z = knn.predict(np.c_[xx.ravel(), yy.ravel()])
 
-    #
+    # Put the result into a color plot
+    Z = Z.reshape(xx.shape)
+    pl.figure()
+    pl.pc
