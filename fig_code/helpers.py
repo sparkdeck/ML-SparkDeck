@@ -29,4 +29,7 @@ def plot_iris_knn():
     # Put the result into a color plot
     Z = Z.reshape(xx.shape)
     pl.figure()
-    pl.pc
+    pl.pcolormesh(xx, yy, Z, cmap=cmap_light)
+
+    # Plot also the training points
+    pl
