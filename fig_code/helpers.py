@@ -34,3 +34,9 @@ def plot_iris_knn():
     # Plot also the training points
     pl.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold)
     pl.xlabel('sepal length (cm)')
+    pl.ylabel('sepal width (cm)')
+    pl.axis('tight')
+
+
+def plot_polynomial_regression():
+ 
