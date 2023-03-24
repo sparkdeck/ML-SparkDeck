@@ -32,4 +32,5 @@ def plot_iris_knn():
     pl.pcolormesh(xx, yy, Z, cmap=cmap_light)
 
     # Plot also the training points
-    pl
+    pl.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold)
+    pl.xlabel('sepal length (cm)')
