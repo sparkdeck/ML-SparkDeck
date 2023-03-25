@@ -39,4 +39,7 @@ def plot_iris_knn():
 
 
 def plot_polynomial_regression():
- 
+    rng = np.random.RandomState(0)
+    x = 2*rng.rand(100) - 1
+
+    f = lambda t: 1.2 * t**
