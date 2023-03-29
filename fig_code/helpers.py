@@ -52,4 +52,6 @@ def plot_polynomial_regression():
 
     X = np.array([x**i for i in range(5)]).T
     X_test = np.array([x_test**i for i in range(5)]).T
-    regr 
+    regr = linear_model.LinearRegression()
+    regr.fit(X, y)
+    pl.plot(x_test, regr.predict
