@@ -62,4 +62,6 @@ def plot_polynomial_regression():
     regr.fit(X, y)
     pl.plot(x_test, regr.predict(X_test), label='9th order')
 
-    pl
+    pl.legend(loc='best')
+    pl.axis('tight')
+    pl.title('Fitting a 4th and a 9th order po
