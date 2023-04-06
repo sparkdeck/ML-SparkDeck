@@ -72,3 +72,4 @@ def plot_polynomial_regression():
     pl.axis('tight')
     pl.title('Ground truth (9th order polynomial)')
 
+
