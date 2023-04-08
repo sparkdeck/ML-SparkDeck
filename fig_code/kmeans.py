@@ -5,4 +5,5 @@ from sklearn.cluster import KMeans
 
 
 def plot_kmeans():
-    X, y = make_blo
+    X, y = make_blobs(n_samples=300, centers=4,
+                      random_state=0, cluster_std=
