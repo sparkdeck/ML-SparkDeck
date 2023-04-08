@@ -1,2 +1,8 @@
 import matplotlib.pyplot as plt
-from sklearn.datasets.samples_generator i
+from sklearn.datasets.samples_generator import make_blobs
+from sklearn.cluster import KMeans
+
+
+
+def plot_kmeans():
+    X, y = make_blo
