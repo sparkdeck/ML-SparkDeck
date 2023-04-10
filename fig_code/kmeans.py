@@ -14,3 +14,6 @@ def plot_kmeans():
 
     ax[0].scatter(X[:, 0], X[:, 1])
     ax[0].set_title('Input')
+
+    ax[1].scatter(X[:, 0], X[:, 1], c=y)
+    ax[1].set_title('Labels determined by K Means')
