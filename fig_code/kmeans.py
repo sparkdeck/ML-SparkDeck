@@ -10,4 +10,7 @@ def plot_kmeans():
 
     y_pred = KMeans(4).fit(X).predict(X)
 
-    fig, ax = plt.subplots(1, 2, fig
+    fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+
+    ax[0].scatter(X[:, 0], X[:, 1])
+    ax[0].set_title('Input')
