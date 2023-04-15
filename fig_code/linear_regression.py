@@ -11,4 +11,8 @@ def plot_linear_regression():
     x = 30 * np.random.random(20)
 
     # y = a*x + b with noise
-    y = a * x + b + np.random
+    y = a * x + b + np.random.normal(size=x.shape)
+
+    # create a linear regression classifier
+    clf = LinearRegression()
+   
