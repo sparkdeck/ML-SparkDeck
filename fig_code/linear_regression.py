@@ -15,4 +15,7 @@ def plot_linear_regression():
 
     # create a linear regression classifier
     clf = LinearRegression()
-   
+    clf.fit(x[:, None], y)
+
+    # predict y from the data
+    x_new = np.li
