@@ -18,4 +18,8 @@ def plot_linear_regression():
     clf.fit(x[:, None], y)
 
     # predict y from the data
-    x_new = np.li
+    x_new = np.linspace(0, 30, 100)
+    y_new = clf.predict(x_new[:, None])
+
+    # plot the results
+    ax = plt
