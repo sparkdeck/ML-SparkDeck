@@ -26,4 +26,11 @@ def plot_linear_regression():
     ax.scatter(x, y, s=60)
     ax.plot(x_new, y_new)
 
-    ax.set
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+
+    ax.axis('tight')
+
+
+if __name__ == '__main__':
+    
