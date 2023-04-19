@@ -22,4 +22,8 @@ def plot_linear_regression():
     y_new = clf.predict(x_new[:, None])
 
     # plot the results
-    ax = plt
+    ax = plt.axes()
+    ax.scatter(x, y, s=60)
+    ax.plot(x_new, y_new)
+
+    ax.set
