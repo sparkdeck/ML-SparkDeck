@@ -8,4 +8,6 @@ def plot_sgd_separator():
     X, Y = make_blobs(n_samples=50, centers=2,
                       random_state=0, cluster_std=0.60)
 
-    # fit
+    # fit the model
+    clf = SGDClassifier(loss="hinge", alpha=0.01,
+                     
