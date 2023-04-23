@@ -13,4 +13,8 @@ def plot_sgd_separator():
                         n_iter=200, fit_intercept=True)
     clf.fit(X, Y)
 
-    # plot the line, t
+    # plot the line, the points, and the nearest vectors to the plane
+    xx = np.linspace(-1, 5, 10)
+    yy = np.linspace(-1, 5, 10)
+
+   
