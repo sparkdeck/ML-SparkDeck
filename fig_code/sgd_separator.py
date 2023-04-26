@@ -23,4 +23,7 @@ def plot_sgd_separator():
         x1 = val
         x2 = X2[i, j]
         p = clf.decision_function([x1, x2])
-        Z[i,
+        Z[i, j] = p[0]
+    levels = [-1.0, 0.0, 1.0]
+    linestyles = ['dashed', 'solid', 'dashed']
+    colors = 
