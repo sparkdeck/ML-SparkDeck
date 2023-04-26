@@ -17,4 +17,7 @@ def plot_sgd_separator():
     xx = np.linspace(-1, 5, 10)
     yy = np.linspace(-1, 5, 10)
 
-   
+    X1, X2 = np.meshgrid(xx, yy)
+    Z = np.empty(X1.shape)
+    for (i, j), val in np.ndenumerate(X1):
+      
