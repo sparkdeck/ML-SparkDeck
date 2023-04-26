@@ -20,4 +20,7 @@ def plot_sgd_separator():
     X1, X2 = np.meshgrid(xx, yy)
     Z = np.empty(X1.shape)
     for (i, j), val in np.ndenumerate(X1):
-      
+        x1 = val
+        x2 = X2[i, j]
+        p = clf.decision_function([x1, x2])
+        Z[i,
