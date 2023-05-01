@@ -29,4 +29,10 @@ def plot_sgd_separator():
     colors = 'k'
 
     ax = plt.axes()
-    ax.contour(X1, X2, Z, levels, colors=colors, linestyles=lines
+    ax.contour(X1, X2, Z, levels, colors=colors, linestyles=linestyles)
+    ax.scatter(X[:, 0], X[:, 1], c=Y, s=60)
+
+    ax.axis('tight')
+
+
+if __name__ == '__main_
