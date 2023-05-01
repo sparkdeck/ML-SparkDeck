@@ -35,4 +35,6 @@ def plot_sgd_separator():
     ax.axis('tight')
 
 
-if __name__ == '__main_
+if __name__ == '__main__':
+    plot_sgd_separator()
+    plt.show()
