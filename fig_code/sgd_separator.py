@@ -26,4 +26,7 @@ def plot_sgd_separator():
         Z[i, j] = p[0]
     levels = [-1.0, 0.0, 1.0]
     linestyles = ['dashed', 'solid', 'dashed']
-    colors = 
+    colors = 'k'
+
+    ax = plt.axes()
+    ax.contour(X1, X2, Z, levels, colors=colors, linestyles=lines
